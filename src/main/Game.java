@@ -10,7 +10,7 @@ import java.io.InputStream;
 public class Game extends JFrame {
 
     private GameScreen gameScreen;
-    private int size = 320;
+    private int size = 640;
 
     private BufferedImage spriteAtlas;
 
@@ -23,7 +23,7 @@ public class Game extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);        // exit program when x clicked
         setResizable(false);
 
-        gameScreen = new GameScreen(size);
+        gameScreen = new GameScreen(size, spriteAtlas);
         add(gameScreen);
         pack();
 
