@@ -5,17 +5,21 @@ import javax.swing.JFrame;
 public class Game extends JFrame {
 
     private GameScreen gameScreen;
+    private int size = 320;
 
     // constructor
     public Game() {
 
-        setSize(400, 400);
-        setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);    // exit program when x clicked
-        setLocationRelativeTo(null);                // center frame
+        setSize(size, size);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);        // exit program when x clicked
+        setResizable(false);
 
-        this.gameScreen = new GameScreen();
-        add(this.gameScreen);
+        gameScreen = new GameScreen(size);
+        add(gameScreen);
+        pack();
+
+        setLocationRelativeTo(null);                    // center frame
+        setVisible(true);
 
     }
 
