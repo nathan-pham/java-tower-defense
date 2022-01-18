@@ -14,7 +14,7 @@ public class TileManager {
 
     public TileManager() {
 
-        // loadAtlas();
+        loadAtlas();
         createTiles();
 
     }
@@ -22,7 +22,7 @@ public class TileManager {
     public void createTiles() {
 
         tiles.add(GRASS = new Tile(getSprite(8, 1)));
-        tiles.add(WATER = new Tile(getSprite(6, 0)));
+        tiles.add(WATER = new Tile(getSprite(0, 6)));
         tiles.add(ROAD  = new Tile(getSprite(9, 0)));
 
     }

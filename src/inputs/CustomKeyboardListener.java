@@ -10,21 +10,29 @@ public class CustomKeyboardListener implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_A) {
-            System.out.println("A was pressed");
-            GameStates.gameState = GameStates.PLAYING;
+        
+        int keyCode = e.getKeyCode();
+
+        switch (keyCode) {
+            case KeyEvent.VK_A:
+                GameStates.gameState = GameStates.PLAYING;
+                break;
+            case KeyEvent.VK_D:
+                GameStates.gameState = GameStates.MENU;
+                break;
         }
+
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         // TODO Auto-generated method stub
-        
+
     }
-    
+
 }
