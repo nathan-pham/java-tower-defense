@@ -3,6 +3,8 @@ package src.inputs;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
+import src.main.GameStates;
+
 public class CustomKeyboardListener implements KeyListener {
 
     @Override
@@ -15,6 +17,7 @@ public class CustomKeyboardListener implements KeyListener {
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_A) {
             System.out.println("A was pressed");
+            GameStates.gameState = GameStates.PLAYING;
         }
     }
 

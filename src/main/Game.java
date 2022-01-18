@@ -6,6 +6,10 @@ import java.lang.Runnable;
 import src.inputs.CustomKeyboardListener;
 import src.inputs.CustomMouseListener;
 
+import src.scenes.Settings;
+import src.scenes.Playing;
+import src.scenes.Menu;
+
 public class Game extends JFrame implements Runnable {
 
     private GameScreen gameScreen;
@@ -13,10 +17,15 @@ public class Game extends JFrame implements Runnable {
 
     final double FPS_SET = 60.0;
     final double UPS_SET = 30.0;
-    final int SIZE = 640;
+    public final int SIZE = 640;
 
     private CustomKeyboardListener keyboardListener;
     private CustomMouseListener mouseListener;
+
+    private Render render;
+    private Settings settings;
+    private Playing playing;
+    private Menu menu;
 
     // constructor
     public Game() {
@@ -24,6 +33,9 @@ public class Game extends JFrame implements Runnable {
         setSize(SIZE, SIZE);
         setDefaultCloseOperation(EXIT_ON_CLOSE); // exit program when x clicked
         setResizable(false);
+
+        render = new Render(this);
+        initScenes();
 
         gameScreen = new GameScreen(this);
         add(gameScreen);
@@ -48,6 +60,15 @@ public class Game extends JFrame implements Runnable {
 
         // focus on window
         requestFocus();
+
+    }
+
+    // initialize scenes
+    private void initScenes() {
+
+        settings = new Settings(this);
+        playing = new Playing(this);
+        menu = new Menu(this);
 
     }
 
@@ -121,6 +142,23 @@ public class Game extends JFrame implements Runnable {
         game.initInputs();
         game.start();
 
+    }
+
+    // getters and setters
+    public Render getRender() {
+        return render;
+    }
+
+    public Settings getSettings() {
+        return this.settings;
+    }
+
+    public Playing getPlaying() {
+        return this.playing;
+    }
+
+    public Menu getMenu() {
+        return this.menu;
     }
 
 }
