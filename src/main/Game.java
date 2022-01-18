@@ -9,17 +9,21 @@ import java.io.InputStream;
 
 import java.lang.Runnable;
 
+import src.inputs.CustomKeyboardListener;
+import src.inputs.CustomMouseListener;
+
 public class Game extends JFrame implements Runnable {
 
-    private GameScreen gameScreen;
-
     private BufferedImage spriteAtlas;
-
+    private GameScreen gameScreen;
     private Thread gameThread;
 
     private final double FPS_SET = 60.0;
     private final double UPS_SET = 30.0;
     private final int SIZE = 640;
+
+    private CustomKeyboardListener keyboardListener;
+    private CustomMouseListener mouseListener;
 
     // constructor
     public Game() {
@@ -36,6 +40,23 @@ public class Game extends JFrame implements Runnable {
 
         setLocationRelativeTo(null); // center frame
         setVisible(true);
+
+    }
+
+    // initialize inputs
+    private void initInputs() {
+
+        // initialize variables
+        keyboardListener = new CustomKeyboardListener();
+        mouseListener = new CustomMouseListener();
+
+        // add listeners to game
+        addKeyListener(keyboardListener);
+        addMouseMotionListener(mouseListener);
+        addMouseListener(mouseListener);
+
+        // focus on window
+        requestFocus();
 
     }
 
@@ -60,22 +81,23 @@ public class Game extends JFrame implements Runnable {
     // start the gameThread
     private void start() {
 
-        gameThread = new Thread(this) {};
+        gameThread = new Thread(this) {
+        };
         gameThread.start();
-    
+
     }
 
     // run the gameThread
     @Override
     public void run() {
-        
+
         // initialize variables
         double timePerUpdate = 1_000_000_000.0 / FPS_SET;
         double timePerFrame = 1_000_000_000.0 / UPS_SET;
 
         long lastUpdate = System.nanoTime();
         long lastFrame = System.nanoTime();
-    
+
         long lastTimeCheck = System.currentTimeMillis();
         int updates = 0;
         int frames = 0;
@@ -92,7 +114,7 @@ public class Game extends JFrame implements Runnable {
                 repaint();
                 frames++;
             }
-            
+
             // update
             if (nanoTime - lastUpdate >= timePerUpdate) {
                 lastUpdate = nanoTime;
@@ -101,7 +123,7 @@ public class Game extends JFrame implements Runnable {
             }
 
             // log fps and ups
-            if(System.currentTimeMillis() - lastTimeCheck >= 1000) {
+            if (System.currentTimeMillis() - lastTimeCheck >= 1000) {
 
                 System.out.printf("FPS: %d | UPS: %d\n", frames, updates);
                 frames = 0;
@@ -109,7 +131,7 @@ public class Game extends JFrame implements Runnable {
                 lastTimeCheck = System.currentTimeMillis();
 
             }
-            
+
         }
 
     }
@@ -118,6 +140,7 @@ public class Game extends JFrame implements Runnable {
     public static void main(String[] args) {
 
         Game game = new Game();
+        game.initInputs();
         game.start();
 
     }
