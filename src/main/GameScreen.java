@@ -21,10 +21,10 @@ public class GameScreen extends JPanel {
     private ArrayList<BufferedImage> sprites = new ArrayList<>();
 
     // constructor
-    public GameScreen(int size, BufferedImage spriteAtlas) {
+    public GameScreen(int SIZE, BufferedImage spriteAtlas) {
 
-        setPreferredSize(new Dimension(size, size));
-        tileSize = size / tileCount;
+        setPreferredSize(new Dimension(SIZE, SIZE));
+        tileSize = SIZE / tileCount;
 
         random = new Random();
 
@@ -33,6 +33,7 @@ public class GameScreen extends JPanel {
 
     }
 
+    // load sprites from the spriteAtlas
     private void loadSprites() {
 
         for(int y = 0; y < 10; y++) {
@@ -46,8 +47,6 @@ public class GameScreen extends JPanel {
     public void paintComponent(Graphics ctx) {
 
         super.paintComponent(ctx);
-
-        // ctx.drawImage(sprites.get(19), 0, 0, tileSize, tileSize, null, null);
 
         // initialize a grid
         for(int y = 0; y < tileCount; y++) {
