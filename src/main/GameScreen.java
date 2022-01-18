@@ -5,64 +5,30 @@ import javax.swing.JPanel;
 import java.awt.image.BufferedImage;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Color;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 public class GameScreen extends JPanel {
 
-    private int tileCount = 20;
-    private int tileSize = 0;
+    private Render render;
+    private Game game;
 
-    private Random random;
-
-    private BufferedImage spriteAtlas;
-    private ArrayList<BufferedImage> sprites = new ArrayList<>();
+    int tileCount = 20;
+    int tileSize = 0;
 
     // constructor
-    public GameScreen(int SIZE, BufferedImage spriteAtlas) {
+    public GameScreen(Game game) {
 
-        setPreferredSize(new Dimension(SIZE, SIZE));
-        tileSize = SIZE / tileCount;
+        setPreferredSize(new Dimension(game.SIZE, game.SIZE));
+        tileSize = game.SIZE / tileCount;
 
-        random = new Random();
-
-        this.spriteAtlas = spriteAtlas;
-        loadSprites();
-
-    }
-
-    // load sprites from the spriteAtlas
-    private void loadSprites() {
-
-        for(int y = 0; y < 10; y++) {
-            for(int x = 0; x < 10; x++) {
-                sprites.add(spriteAtlas.getSubimage(x * 32, y * 32, 32, 32));
-            }
-        }
+        render = new Render(this);
+        this.game = game;
 
     }
 
     public void paintComponent(Graphics ctx) {
 
         super.paintComponent(ctx);
-
-        // initialize a grid
-        for(int y = 0; y < tileCount; y++) {
-            for(int x = 0; x < tileCount; x++) {
-                ctx.drawImage(sprites.get(random.nextInt(sprites.size())), x * tileSize, y * tileSize, tileSize, tileSize, null, null);
-                // ctx.setColor(getRandomColor());
-                // ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-            }
-        }
-
-    }
-
-    // generate a random color
-    private Color getRandomColor() {
-
-        return new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256));
+        render.render(ctx);
 
     }
 
