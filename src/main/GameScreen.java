@@ -1,7 +1,8 @@
 package src.main;
 
-
 import javax.swing.JPanel;
+
+import java.awt.image.BufferedImage;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Color;
@@ -11,16 +12,21 @@ import java.util.Random;
 public class GameScreen extends JPanel {
 
     private int tileCount = 20;
-    private int tileSize;
+    private int tileSize = 0;
+
     private Random random;
 
-    // constructor
-    public GameScreen(int size) {
+    BufferedImage spriteAtlas;
 
-        random = new Random();
+    // constructor
+    public GameScreen(int size, BufferedImage spriteAtlas) {
 
         setPreferredSize(new Dimension(size, size));
         tileSize = size / tileCount;
+
+        random = new Random();
+
+        this.spriteAtlas = spriteAtlas;
 
     }
 
@@ -29,8 +35,8 @@ public class GameScreen extends JPanel {
         super.paintComponent(ctx);
 
         // initialize a grid
-        for(int x = 0; x < tileCount; x++) {
-            for(int y = 0; y < tileCount; y++) {
+        for(int y = 0; y < tileCount; y++) {
+            for(int x = 0; x < tileCount; x++) {
                 ctx.setColor(getRandomColor());
                 ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
             }
