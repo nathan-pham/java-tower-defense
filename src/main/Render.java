@@ -1,5 +1,6 @@
 package src.main;
 
+import static src.main.GameStates.*;
 import java.awt.Graphics;
 
 
@@ -9,20 +10,18 @@ public class Render {
 
     // constructor
     public Render(Game game) {
-
         this.game = game;
-
     }
 
     public void render(Graphics ctx) {
         
-        switch (GameStates.gameState) {
+        switch (gameState) {
 
             case SETTINGS:
                 game.getSettings().render(ctx);
                 break;
 
-            case PLAYING:
+            case PLAY:
                 game.getPlaying().render(ctx);
                 break;
 

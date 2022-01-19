@@ -3,7 +3,7 @@ package src.inputs;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
-import src.main.GameStates;
+import static src.main.GameStates.*;
 
 public class CustomKeyboardListener implements KeyListener {
 
@@ -20,10 +20,10 @@ public class CustomKeyboardListener implements KeyListener {
 
         switch (keyCode) {
             case KeyEvent.VK_A:
-                GameStates.gameState = GameStates.PLAYING;
+                SetGameState(PLAY);
                 break;
             case KeyEvent.VK_D:
-                GameStates.gameState = GameStates.MENU;
+                SetGameState(MENU);
                 break;
         }
 

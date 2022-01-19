@@ -3,9 +3,6 @@ package src.main;
 import javax.swing.JFrame;
 import java.lang.Runnable;
 
-import src.inputs.CustomKeyboardListener;
-import src.inputs.CustomMouseListener;
-
 import src.scenes.Settings;
 import src.scenes.Playing;
 import src.scenes.Menu;
@@ -19,8 +16,6 @@ public class Game extends JFrame implements Runnable {
     final double UPS_SET = 30.0;
     public final int SIZE = 640;
 
-    private CustomKeyboardListener keyboardListener;
-    private CustomMouseListener mouseListener;
 
     private Render render;
     private Settings settings;
@@ -31,6 +26,7 @@ public class Game extends JFrame implements Runnable {
     public Game() {
 
         setSize(SIZE, SIZE);
+        setTitle("Java | Tower Defense");
         setDefaultCloseOperation(EXIT_ON_CLOSE); // exit program when x clicked
         setResizable(false);
 
@@ -43,23 +39,6 @@ public class Game extends JFrame implements Runnable {
 
         setLocationRelativeTo(null); // center frame
         setVisible(true);
-
-    }
-
-    // initialize inputs
-    private void initInputs() {
-
-        // initialize variables
-        keyboardListener = new CustomKeyboardListener();
-        mouseListener = new CustomMouseListener();
-
-        // add listeners to game
-        addKeyListener(keyboardListener);
-        addMouseMotionListener(mouseListener);
-        addMouseListener(mouseListener);
-
-        // focus on window
-        requestFocus();
 
     }
 
@@ -139,7 +118,7 @@ public class Game extends JFrame implements Runnable {
     public static void main(String[] args) {
 
         Game game = new Game();
-        game.initInputs();
+        game.gameScreen.initInputs();
         game.start();
 
     }
