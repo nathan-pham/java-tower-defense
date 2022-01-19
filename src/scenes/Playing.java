@@ -45,8 +45,13 @@ public class Playing extends GameScene implements SceneMethods {
     @Override
     public void mouseMoved(int x, int y) {
 
-        game.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
+    }
+
+    @Override
+    public void mousePressed(int x, int y) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

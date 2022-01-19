@@ -8,6 +8,7 @@ public interface SceneMethods {
     
     // event listeners
     public void mouseClicked(int x, int y);
+    public void mousePressed(int x, int y);
     public void mouseMoved(int x, int y);
     
 }

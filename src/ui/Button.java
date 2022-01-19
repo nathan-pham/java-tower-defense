@@ -10,9 +10,10 @@ public class Button {
     private String text;
 
     private Rectangle bounds;
-    private boolean mouseOver;
+    private boolean mouseOver, mousePressed;
 
     private final int BORDER_RADIUS = 15;
+    private final int BOX_SHADOW = 7;
 
     // constructor
     public Button(String text, int x, int y, int width, int height) {
@@ -37,17 +38,27 @@ public class Button {
         this.mouseOver = mouseOver;
     }
 
+    public void setMousePressed(boolean mousePressed) {
+        this.mousePressed = mousePressed;
+    }
+
     // render button
     public void draw(Graphics ctx) {
+        drawBorder(ctx);
         drawBody(ctx);
+
         drawText(ctx);
     }
     
     private void drawBody(Graphics ctx) {
-        // ctx.setColor(C);
-        ctx.setColor(mouseOver ? Theme.NAVY : Theme.BLUE);
-        ctx.fillRoundRect(x, y, width, height, BORDER_RADIUS, BORDER_RADIUS);
-        // ctx.fillRect(x, y, width, height);
+        // ctx.setColor(mouseOver ? Theme.BLUE.brighter() : Theme.BLUE);
+        ctx.setColor(Theme.BLUE.brighter());
+        ctx.fillRoundRect(x, y + (mousePressed ? BOX_SHADOW : 0), width, height, BORDER_RADIUS, BORDER_RADIUS);
+    }
+
+    private void drawBorder(Graphics ctx) {
+        ctx.setColor(Theme.BLUE);
+        ctx.fillRoundRect(x, y + BOX_SHADOW, width, height, BORDER_RADIUS, BORDER_RADIUS);
     }
 
     private void drawText(Graphics ctx) {
@@ -56,7 +67,7 @@ public class Button {
         int h = ctx.getFontMetrics().getHeight();
         
         ctx.setColor(Theme.WHITE);
-        ctx.drawString(text, x + (width / 2) - (w / 2), y + (height / 2) + (h / 4));
+        ctx.drawString(text, x + (width / 2) - (w / 2), y + (height / 2) + (h / 4) + (mousePressed ? BOX_SHADOW : 0));
     
     }
 

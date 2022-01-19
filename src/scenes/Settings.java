@@ -30,4 +30,10 @@ public class Settings extends GameScene implements SceneMethods {
 
     }
 
+    @Override
+    public void mousePressed(int x, int y) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }
