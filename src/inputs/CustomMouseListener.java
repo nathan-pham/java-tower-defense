@@ -57,8 +57,21 @@ public class CustomMouseListener implements MouseMotionListener, MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
-        
+        if(e.getButton() == MouseEvent.BUTTON1) {
+
+            int x = e.getX();
+            int y = e.getY();
+
+            switch(gameState) {
+                case MENU:
+                    game.getMenu().mouseReleased(x, y);
+                    break;
+                case PLAY:
+                    break;
+                case SETTINGS:
+                    break;
+            }
+        }
     }
 
     @Override

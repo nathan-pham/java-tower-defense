@@ -54,4 +54,10 @@ public class Playing extends GameScene implements SceneMethods {
         
     }
 
+    @Override
+    public void mouseReleased(int x, int y) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

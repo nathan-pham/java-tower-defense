@@ -13,7 +13,7 @@ public class Button {
     private boolean mouseOver, mousePressed;
 
     private final int BORDER_RADIUS = 15;
-    private final int BOX_SHADOW = 7;
+    private final int BOX_SHADOW = 6;
 
     // constructor
     public Button(String text, int x, int y, int width, int height) {
@@ -42,6 +42,12 @@ public class Button {
         this.mousePressed = mousePressed;
     }
 
+    // reset mouse states
+    public void resetMouseStates() {
+        setMouseOver(false);
+        setMousePressed(false);
+    }
+
     // render button
     public void draw(Graphics ctx) {
         drawBorder(ctx);
@@ -51,7 +57,6 @@ public class Button {
     }
     
     private void drawBody(Graphics ctx) {
-        // ctx.setColor(mouseOver ? Theme.BLUE.brighter() : Theme.BLUE);
         ctx.setColor(Theme.BLUE.brighter());
         ctx.fillRoundRect(x, y + (mousePressed ? BOX_SHADOW : 0), width, height, BORDER_RADIUS, BORDER_RADIUS);
     }
