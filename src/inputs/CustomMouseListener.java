@@ -28,9 +28,11 @@ public class CustomMouseListener implements MouseMotionListener, MouseListener {
                 case MENU:
                     game.getMenu().mouseClicked(x, y);
                     break;
-                case PLAY:
+                case PLAYING:
+                    game.getPlaying().mouseClicked(x, y);
                     break;
                 case SETTINGS:
+                    game.getSettings().mouseClicked(x, y);
                     break;
             }
         }
@@ -47,9 +49,11 @@ public class CustomMouseListener implements MouseMotionListener, MouseListener {
                 case MENU:
                     game.getMenu().mousePressed(x, y);
                     break;
-                case PLAY:
+                case PLAYING:
+                    game.getPlaying().mousePressed(x, y);
                     break;
                 case SETTINGS:
+                    game.getSettings().mousePressed(x, y);
                     break;
             }
         }
@@ -66,9 +70,11 @@ public class CustomMouseListener implements MouseMotionListener, MouseListener {
                 case MENU:
                     game.getMenu().mouseReleased(x, y);
                     break;
-                case PLAY:
+                case PLAYING:
+                    game.getPlaying().mouseReleased(x, y);
                     break;
                 case SETTINGS:
+                    game.getSettings().mouseReleased(x, y);
                     break;
             }
         }
@@ -102,9 +108,11 @@ public class CustomMouseListener implements MouseMotionListener, MouseListener {
             case MENU:
                 game.getMenu().mouseMoved(x, y);
                 break;
-            case PLAY:
+            case PLAYING:
+                game.getPlaying().mouseMoved(x, y);
                 break;
             case SETTINGS:
+                game.getSettings().mouseMoved(x, y);
                 break;
         }
 

@@ -20,7 +20,7 @@ public class CustomKeyboardListener implements KeyListener {
 
         switch (keyCode) {
             case KeyEvent.VK_A:
-                SetGameState(PLAY);
+                SetGameState(PLAYING);
                 break;
             case KeyEvent.VK_D:
                 SetGameState(MENU);

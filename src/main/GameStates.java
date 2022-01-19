@@ -2,7 +2,7 @@ package src.main;
 
 public enum GameStates {
 
-    SETTINGS, PLAY, MENU;
+    SETTINGS, PLAYING, MENU;
 
     public static GameStates gameState = MENU;
     public static void SetGameState(GameStates state) {
