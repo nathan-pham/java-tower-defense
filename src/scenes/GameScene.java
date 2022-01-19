@@ -3,7 +3,7 @@ package src.scenes;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.io.InputStream;
-
+import java.awt.Cursor;
 import java.awt.image.BufferedImage;
 
 import java.util.ArrayList;
@@ -23,6 +23,9 @@ public class GameScene {
     public final int TILE_COUNT = 20;
     public final int TILE_SIZE;
 
+    public final int DEFAULT_MOUSE = Cursor.DEFAULT_CURSOR;
+    public final int POINTER_MOUSE = Cursor.HAND_CURSOR;
+
     public GameScene(Game game) {
 
         TILE_SIZE = game.SIZE / TILE_COUNT;
@@ -39,7 +42,11 @@ public class GameScene {
         return this.game;
     }
 
-    
+    // set cursor state
+    public void setCursorState(int cursorState) {
+        game.setCursor(Cursor.getPredefinedCursor(cursorState));
+    }
+
     // import spriteAtlas
     public void importSpriteAtlas() {
 

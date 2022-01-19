@@ -1,7 +1,6 @@
 package src.scenes;
 
 import java.awt.Graphics;
-import java.awt.Cursor;
 
 import static src.main.GameStates.*;
 import src.main.Game;
@@ -49,6 +48,7 @@ public class Menu extends GameScene implements SceneMethods {
     @Override
     public void mouseClicked(int x, int y) {
 
+        setCursorState(DEFAULT_MOUSE);
         if(bPlaying.getBounds().contains(x, y)) {
             SetGameState(PLAY);
         }
@@ -58,12 +58,12 @@ public class Menu extends GameScene implements SceneMethods {
     @Override
     public void mouseMoved(int x, int y) {
 
+        setCursorState(DEFAULT_MOUSE);
+        bPlaying.setMouseOver(false);
+        
         if(bPlaying.getBounds().contains(x, y)) {
-            game.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            setCursorState(POINTER_MOUSE);
             bPlaying.setMouseOver(true);
-        } else {
-            game.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-            bPlaying.setMouseOver(false);
         }
 
     }
