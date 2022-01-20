@@ -17,7 +17,7 @@ public class BottomBar {
     private Playing gameScene;
     private Button bMenu;
 
-    // private ArrayList<Button> tile_buttons = new ArrayList<Button>();
+    private ArrayList<TileButton> tile_buttons = new ArrayList<>();
 
     public BottomBar(int x, int y, int width, int height, Playing gameScene) {
 
@@ -38,14 +38,17 @@ public class BottomBar {
         int bHeight = 45;
         int margin = 12;
 
-        int centerY = getCenterY(bHeight) - (Button.BOX_SHADOW / 2);
+        int centerY = getCenterY(bHeight);
 
-        gameScene.buttons.add(bMenu = new Button("Menu", margin, centerY, 100, bHeight));
+        gameScene.buttons.add(bMenu = new Button("Menu", margin, centerY - (Button.BOX_SHADOW / 2), 100, bHeight));
 
         for (Tile tile : gameScene.getTileManager().tiles) {
-            gameScene.buttons.add(new TileButton(tile.getSprite(),
-                    gameScene.game.WIDTH - bHeight - margin - ((bHeight + margin) * tile.getId()), centerY, bHeight,
-                    bHeight));
+            TileButton tileButton = new TileButton(tile.getSprite(), tile.getId(),
+            gameScene.game.WIDTH - bHeight - margin - ((bHeight + margin) * tile.getId()), centerY, bHeight,
+            bHeight);
+
+            gameScene.buttons.add(tileButton);
+            tile_buttons.add(tileButton);
         }
 
     }
@@ -72,6 +75,12 @@ public class BottomBar {
         gameScene.setCursorState(gameScene.DEFAULT_MOUSE);
         if (bMenu.getBounds().contains(x, y)) {
             SetGameState(MENU);
+        }
+
+        for (TileButton button : tile_buttons) {
+            if(button.getBounds().contains(x, y)) {
+                System.out.println(button.getId());
+            }
         }
 
     }
