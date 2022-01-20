@@ -5,8 +5,8 @@ import java.awt.Graphics;
 
 public class Button {
 
-    private int x, y, width, height;
-    private String text;
+    public int x, y, width, height;
+    public String text;
 
     private Rectangle bounds;
     private boolean mouseOver, mousePressed;

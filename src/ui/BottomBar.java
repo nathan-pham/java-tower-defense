@@ -8,6 +8,8 @@ import static src.main.GameStates.*;
 import src.objects.Tile;
 import src.scenes.Playing;
 
+import src.ui.TileButton;
+
 public class BottomBar {
 
     private int x, y, width, height;
@@ -15,7 +17,7 @@ public class BottomBar {
     private Playing gameScene;
     private Button bMenu;
 
-    private ArrayList<Button> tile_buttons = new ArrayList<Button>();
+    // private ArrayList<Button> tile_buttons = new ArrayList<Button>();
 
     public BottomBar(int x, int y, int width, int height, Playing gameScene) {
 
@@ -41,7 +43,7 @@ public class BottomBar {
         gameScene.buttons.add(bMenu = new Button("Menu", margin, centerY, 100, bHeight));
 
         for (Tile tile : gameScene.getTileManager().tiles) {
-            gameScene.buttons.add(new Button(tile.getName(),
+            gameScene.buttons.add(new TileButton(tile.getSprite(),
                     gameScene.game.WIDTH - bHeight - margin - ((bHeight + margin) * tile.getId()), centerY, bHeight,
                     bHeight));
         }
