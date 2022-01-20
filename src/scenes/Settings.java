@@ -1,11 +1,11 @@
 package src.scenes;
 
 import java.awt.Graphics;
-import java.awt.Color;
 
 import static src.main.GameStates.*;
 import src.main.Game;
 
+import src.ui.Theme;
 import src.ui.Button;
 
 public class Settings extends GameScene implements SceneMethods {
@@ -20,8 +20,8 @@ public class Settings extends GameScene implements SceneMethods {
     @Override
     public void render(Graphics ctx) {
 
-        ctx.setColor(Color.BLACK);
-        ctx.fillRect(0, 0, game.SIZE, game.SIZE);
+        ctx.setColor(Theme.WHITE);
+        ctx.fillRect(0, 0, game.WIDTH, game.HEIGHT);
         bMenu.draw(ctx);
 
     }

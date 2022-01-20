@@ -2,7 +2,6 @@ package src.scenes;
 
 import java.awt.Graphics;
 
-import src.helpers.Callback;
 import static src.main.GameStates.*;
 import src.main.Game;
 
@@ -22,7 +21,7 @@ public class Menu extends GameScene implements SceneMethods {
     public void render(Graphics ctx) {
 
         ctx.setColor(Theme.WHITE);
-        ctx.fillRect(0, 0, game.SIZE, game.SIZE);
+        ctx.fillRect(0, 0, game.WIDTH, game.HEIGHT);
 
         drawButtons(ctx);
         // for(int y = 0; y < TILE_COUNT; y++) {
@@ -41,8 +40,8 @@ public class Menu extends GameScene implements SceneMethods {
         int bWidth = 150;
         int bHeight = 45;
 
-        int centerX = game.SIZE / 2 - bWidth / 2;
-        int minY = 200;
+        int centerX = game.WIDTH / 2 - bWidth / 2;
+        int minY = 150;
         int margin = bHeight + 25;
 
         buttons.add(bPlaying = new Button("Play", centerX, minY, bWidth, bHeight));

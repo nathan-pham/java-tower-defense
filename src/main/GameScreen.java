@@ -18,7 +18,7 @@ public class GameScreen extends JPanel {
     // constructor
     public GameScreen(Game game) {
         this.game = game;
-        setPreferredSize(new Dimension(game.SIZE, game.SIZE));
+        setPreferredSize(new Dimension(game.WIDTH, game.HEIGHT));
     }
 
     public void initInputs() {

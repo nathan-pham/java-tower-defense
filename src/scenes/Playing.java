@@ -8,7 +8,7 @@ import src.helpers.LevelBuilder;
 import static src.main.GameStates.*;
 import src.main.Game;
 
-import src.ui.Theme;
+import src.ui.BottomBar;
 import src.ui.Button;
 
 public class Playing extends GameScene implements SceneMethods {
@@ -16,7 +16,7 @@ public class Playing extends GameScene implements SceneMethods {
     private int[][] level;
     private TileManager tileManager;
 
-    private Button bMenu;
+    private BottomBar bottomBar;
 
     public Playing(Game game) {
 
@@ -25,7 +25,7 @@ public class Playing extends GameScene implements SceneMethods {
         level = LevelBuilder.getLevelData();
         tileManager = new TileManager();
 
-        initButtons();
+        bottomBar = new BottomBar(0, game.WIDTH, game.WIDTH, game.HEIGHT - game.WIDTH, this);
 
     }
 
@@ -42,22 +42,18 @@ public class Playing extends GameScene implements SceneMethods {
             }
         }
 
-        bMenu.draw(ctx);
-    }
-
-    // initialize buttons
-    private void initButtons() {
-        buttons.add(bMenu = new Button("Menu", 10, 10, 100, 45));
+        // bMenu.draw(ctx);
+        bottomBar.draw(ctx);
     }
 
     // event listeners
     @Override
     public void mouseClicked(int x, int y) {
+        bottomBar.mouseClicked(x, y);
+    }
 
-        setCursorState(DEFAULT_MOUSE);
-        if (bMenu.getBounds().contains(x, y)) {
-            SetGameState(MENU);
-        }
-
+    // get tile manager
+    public TileManager getTileManager() {
+        return tileManager;
     }
 }

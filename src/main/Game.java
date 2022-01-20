@@ -14,8 +14,10 @@ public class Game extends JFrame implements Runnable {
 
     final double FPS_SET = 60.0;
     final double UPS_SET = 30.0;
-    public final int SIZE = 640;
+    // public final int SIZE = 400;
 
+    public final int WIDTH = 400;
+    public final int HEIGHT = 475;
 
     private Render render;
     private Settings settings;
@@ -25,7 +27,7 @@ public class Game extends JFrame implements Runnable {
     // constructor
     public Game() {
 
-        setSize(SIZE, SIZE);
+        setSize(WIDTH, HEIGHT);
         setTitle("Java | Tower Defense");
         setDefaultCloseOperation(EXIT_ON_CLOSE); // exit program when x clicked
         setResizable(false);

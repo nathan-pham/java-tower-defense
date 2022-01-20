@@ -32,7 +32,7 @@ public class GameScene {
 
     public GameScene(Game game) {
 
-        TILE_SIZE = game.SIZE / TILE_COUNT;
+        TILE_SIZE = Math.min(game.WIDTH, game.HEIGHT) / TILE_COUNT;
         this.game = game;
 
         importSpriteAtlas();
@@ -80,8 +80,6 @@ public class GameScene {
         for (Button button : buttons) {
             if (button.getBounds().contains(x, y)) {
                 callback.execute(button);
-                // setCursorState(POINTER_MOUSE);
-                // button.setMouseOver(true);
             }
         }
     }

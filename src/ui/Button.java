@@ -1,8 +1,7 @@
 package src.ui;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.Graphics;
 
 public class Button {
 
@@ -12,8 +11,8 @@ public class Button {
     private Rectangle bounds;
     private boolean mouseOver, mousePressed;
 
-    private final int BORDER_RADIUS = 15;
-    private final int BOX_SHADOW = 6;
+    public static final int BORDER_RADIUS = 15;
+    public static final int BOX_SHADOW = 6;
 
     // constructor
     public Button(String text, int x, int y, int width, int height) {
@@ -75,6 +74,5 @@ public class Button {
         ctx.drawString(text, x + (width / 2) - (w / 2), y + (height / 2) + (h / 4) + (mousePressed ? BOX_SHADOW : 0));
     
     }
-
 
 }
