@@ -9,7 +9,7 @@ public class Button {
     public String text;
 
     private Rectangle bounds;
-    private boolean mouseOver, mousePressed;
+    public boolean mouseOver, mousePressed;
 
     public static final int BORDER_RADIUS = 15;
     public static final int BOX_SHADOW = 6;
@@ -37,8 +37,17 @@ public class Button {
         this.mouseOver = mouseOver;
     }
 
+    public boolean getMouseOver() {
+        return mouseOver;
+    }
+
+
     public void setMousePressed(boolean mousePressed) {
         this.mousePressed = mousePressed;
+    }
+    
+    public boolean getMousePressed() {
+        return mousePressed;
     }
 
     // reset mouse states

@@ -1,26 +1,35 @@
 package src.ui;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-public class TileButton extends Button {
-    
-    private BufferedImage sprite;
-    public int id;
+import src.objects.Tile;
 
-    public TileButton(BufferedImage sprite, int id, int x, int y, int width, int height) {
+public class TileButton extends Button {
+    private Tile tile;
+
+    // tile.getSprite(), tile.getId()
+
+    public TileButton(Tile tile, int x, int y, int width, int height) {
         super("", x, y, width, height);
-        this.sprite = sprite;
-        this.id = id;
+        this.tile = tile;
     }
 
-    public int getId() {
-        return id;
+    public Tile getTile() {
+        return tile;
     }
 
     @Override
     public void draw(Graphics ctx) {
-        ctx.drawImage(sprite, x, y, width, height, null);
+
+        ctx.drawImage(this.tile.getSprite(), x, y, width, height, null);
+
+        if(mouseOver) {
+            ctx.setColor(new Color(1, 1, 1, 0.3f));
+            ctx.fillRect(x, y, width, height);
+        }
+
     }
     
 }

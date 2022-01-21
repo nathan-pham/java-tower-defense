@@ -12,6 +12,8 @@ public class TileManager {
     public BufferedImage spriteAtlas;
     public ArrayList<Tile> tiles = new ArrayList<>();
 
+    public static final int TILE_SIZE = 32;
+
     public TileManager() {
 
         loadAtlas();
@@ -32,13 +34,16 @@ public class TileManager {
         spriteAtlas = LoadSave.getSpriteAtlas();
     }
 
+    public Tile getTile(int id) {
+        return tiles.get(id);
+    }
+
     public BufferedImage getSprite(int id) {
-        return tiles.get(id).getSprite();
+        return getTile(id).getSprite();
     }
 
     private BufferedImage getSprite(int x, int y) {
 
-        final int TILE_SIZE = 32;
         return spriteAtlas.getSubimage(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
 
     }

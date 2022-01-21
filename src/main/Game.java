@@ -16,8 +16,8 @@ public class Game extends JFrame implements Runnable {
     final double UPS_SET = 30.0;
     // public final int SIZE = 400;
 
-    public final int WIDTH = 400;
-    public final int HEIGHT = 475;
+    public final int WIDTH = 500;
+    public final int HEIGHT = 575;
 
     private Render render;
     private Settings settings;

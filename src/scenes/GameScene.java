@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import src.helpers.Callback;
+import src.helpers.LevelBuilder;
 import src.main.Game;
 import src.ui.Button;
 
@@ -85,20 +86,13 @@ public class GameScene {
     }
 
     // reset mouse states
-    private void resetMouseStates(boolean resetCursor) {
-
-        if (resetCursor) {
-            setCursorState(DEFAULT_MOUSE);
-        }
-
+    private void resetMouseStates() {
+        
+        setCursorState(DEFAULT_MOUSE);
         for (Button button : buttons) {
             button.resetMouseStates();
         }
 
-    }
-
-    private void resetMouseStates() {
-        resetMouseStates(true);
     }
 
     // default event listeners

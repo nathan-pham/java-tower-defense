@@ -1,14 +1,17 @@
 package src.ui;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import javax.rmi.ssl.SslRMIClientSocketFactory;
+
 import static src.main.GameStates.*;
 
+import src.managers.TileManager;
 import src.objects.Tile;
 import src.scenes.Playing;
 
-import src.ui.TileButton;
 
 public class BottomBar {
 
@@ -18,6 +21,9 @@ public class BottomBar {
     private Button bMenu;
 
     private ArrayList<TileButton> tile_buttons = new ArrayList<>();
+    private Tile selectedTile = null;
+
+    private final int MARGIN = 10;
 
     public BottomBar(int x, int y, int width, int height, Playing gameScene) {
 
@@ -32,24 +38,29 @@ public class BottomBar {
 
     }
 
+    public Tile getSelectedTile() {
+        return selectedTile;
+    }
+
     // initialize buttons
     public void initButtons() {
 
         int bHeight = 45;
-        int margin = 12;
 
         int centerY = getCenterY(bHeight);
 
-        gameScene.buttons.add(bMenu = new Button("Menu", margin, centerY - (Button.BOX_SHADOW / 2), 100, bHeight));
+        gameScene.buttons.add(bMenu = new Button("Menu", MARGIN, centerY - (Button.BOX_SHADOW / 2), 100, bHeight));
 
         for (Tile tile : gameScene.getTileManager().tiles) {
-            TileButton tileButton = new TileButton(tile.getSprite(), tile.getId(),
-            gameScene.game.WIDTH - bHeight - margin - ((bHeight + margin) * tile.getId()), centerY, bHeight,
+            TileButton tileButton = new TileButton(tile,
+            gameScene.game.WIDTH - bHeight - MARGIN - ((bHeight + MARGIN) * tile.getId()), centerY, bHeight,
             bHeight);
 
             gameScene.buttons.add(tileButton);
             tile_buttons.add(tileButton);
         }
+
+        // selectedTile = tile_buttons.get(0).getTile();
 
     }
 
@@ -63,10 +74,27 @@ public class BottomBar {
         ctx.setColor(Theme.WHITE);
         ctx.fillRect(x, y, width, height);
 
+        drawTileButtons(ctx);
+        drawSelectedTile(ctx);
+
+    }
+
+    public void drawTileButtons(Graphics ctx) {
         for (Button button : gameScene.buttons) {
             button.draw(ctx);
         }
+    }
 
+    public void drawSelectedTile(Graphics ctx) {
+
+        if(selectedTile != null) {
+            int x = gameScene.game.WIDTH - gameScene.TILE_SIZE - MARGIN;
+            int y = MARGIN;
+    
+            ctx.setColor(Theme.WHITE);
+            ctx.fillRect(x - 2, y - 2, gameScene.TILE_SIZE + 4, gameScene.TILE_SIZE + 5);
+            ctx.drawImage(selectedTile.getSprite(), x, y, gameScene.TILE_SIZE, gameScene.TILE_SIZE, null);
+        }
     }
 
     // event listeners
@@ -79,7 +107,8 @@ public class BottomBar {
 
         for (TileButton button : tile_buttons) {
             if(button.getBounds().contains(x, y)) {
-                System.out.println(button.getId());
+                selectedTile = button.getTile() == selectedTile ? null : button.getTile();
+                break;
             }
         }
 
