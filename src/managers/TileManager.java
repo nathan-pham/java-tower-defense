@@ -31,7 +31,7 @@ public class TileManager {
     }
 
     public void loadAtlas() {
-        spriteAtlas = LoadSave.getSpriteAtlas();
+        spriteAtlas = LoadSave.GetSpriteAtlas();
     }
 
     public Tile getTile(int id) {
