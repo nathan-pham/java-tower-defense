@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 import java.awt.image.BufferedImage;
 
+import src.helpers.Utils;
+
 public class LoadSave {
 
     public static BufferedImage GetSpriteAtlas() {
@@ -34,7 +36,7 @@ public class LoadSave {
 
         File file = new File(String.format("./res/%s.txt", name));
 
-        if(file.exists()) {
+        if (file.exists()) {
             System.out.println("File already exists!");
             return file;
         }
@@ -53,7 +55,7 @@ public class LoadSave {
 
         try {
             PrintWriter printWriter = new PrintWriter(file);
-            for(Integer id : idArray) {
+            for (Integer id : idArray) {
                 printWriter.println(id);
             }
             printWriter.close();
@@ -63,7 +65,7 @@ public class LoadSave {
 
     }
 
-    public static ArrayList<Integer> ReadFromFile(String name) {
+    private static ArrayList<Integer> ReadFromFile(String name) {
 
         File file = new File(String.format("./res/%s.txt", name));
 
@@ -78,6 +80,7 @@ public class LoadSave {
             }
 
             scanner.close();
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -86,31 +89,51 @@ public class LoadSave {
 
     }
 
-    public static void CreateLevel(String name, int[] idArray) {
+    private static void CreateLevel(String name, int[] idArray) {
 
         File file = LoadSave.CreateFile(name);
 
-        if(file != null) {
+        if (file != null) {
             WriteToFile(file, idArray);
         }
 
     }
 
-    public static int[][] LoadDefaultLevel() {
+    // get level data as a 2d array
+    public static int[][] GetLevelData(String name) {
 
-        ArrayList<Integer> fileLines = ReadFromFile("level");
+        ArrayList<Integer> fileLines = ReadFromFile(name);
 
-        int levelSize = 20;
-        int[][] level = new int[levelSize][levelSize];
-
-        for(int i = 0; i < levelSize; i++) {
-            for(int j = 0; j < levelSize; j++) {
-                level[i][j] = fileLines.get(j % levelSize + i * levelSize);
-            }
+        if (fileLines.size() == 0) {
+            return null;
         }
 
-        return level;
+        int levelSize = 20;
+        return Utils.ArrayListAsArray(fileLines, levelSize);
 
     }
 
+    // load default level
+    public static int[][] GetLevelData() {
+        return GetLevelData("level");
+    }
+
+    public static void SaveLevelData(int[][] level) {
+        
+        int[] savedLevel = Utils.FlattenArray(level);
+        CreateLevel("level", savedLevel);
+        
+    }
+
+    // save default level with all grass tiles
+    private void CreateDefaultLevel() {
+        int[] defaultLevel = new int[400];
+
+        for (int i = 0; i < defaultLevel.length; i++) {
+            defaultLevel[i] = 0;
+        }
+
+        CreateLevel("level", defaultLevel);
+
+    }
 }

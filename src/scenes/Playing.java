@@ -13,6 +13,8 @@ import src.main.Game;
 import src.ui.BottomBar;
 import src.ui.Theme;
 
+import src.helpers.Utils;
+
 public class Playing extends GameScene implements SceneMethods {
 
     private int[][] level;
@@ -30,25 +32,18 @@ public class Playing extends GameScene implements SceneMethods {
         tileManager = new TileManager();
         bottomBar = new BottomBar(0, game.WIDTH, game.WIDTH, game.HEIGHT - game.WIDTH, this);
 
-        level = LoadSave.LoadDefaultLevel();
-
-    }
-
-    private void createDefaultLevel() {
-
-        int[] defaultLevel = new int[400];
-
-        for(int i = 0; i < defaultLevel.length; i++) {
-            defaultLevel[i] = 0;
-        }
-
-        LoadSave.CreateLevel("level", defaultLevel);
+        level = LoadSave.GetLevelData();
 
     }
 
     // get tile manager
     public TileManager getTileManager() {
         return tileManager;
+    }
+
+    // save level
+    public void saveLevel() {
+        LoadSave.SaveLevelData(level);
     }
 
     @Override
@@ -94,7 +89,12 @@ public class Playing extends GameScene implements SceneMethods {
             lastTileY = tileY;
             lastTileId = tileId;
 
-            level[tileY % TILE_COUNT][tileX % TILE_COUNT] = tileId;
+            // fail silently
+            try {
+                level[tileY % TILE_COUNT][tileX % TILE_COUNT] = tileId;
+            } catch(ArrayIndexOutOfBoundsException e) {
+            }
+            
         }
     }
 
